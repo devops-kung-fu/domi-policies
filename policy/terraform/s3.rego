@@ -1,1 +1,3 @@
 package terraform
+
+deny[msg] 
