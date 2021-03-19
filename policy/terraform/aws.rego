@@ -1,8 +1,15 @@
 package terraform
 
-deny[msg] {
+warn[msg] {
     policyID := "DOMI-0001"
     resources := input.resources[name]
+    resources.tags == null
+    msg = sprintf("%s: No tags found for the following resource(s): `%v`", [policyID, resources ])
+}
+
+warn[msg] {
+    policyID := "DOMI-0002"
+    resources := input.resources[name]
     resources.tags == []
-    msg = sprintf("%s: No tags foung for the following resource(s): `%v`", [policyID, resources ])
+    msg = sprintf("%s: Empty tags block found for the following resource(s): `%v`", [policyID, resources ])
 }
