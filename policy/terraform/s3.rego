@@ -1,1 +1,1 @@
-package terraform
+package terraform.aws.s3

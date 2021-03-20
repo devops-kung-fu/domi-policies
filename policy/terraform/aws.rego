@@ -1,15 +1,21 @@
-package terraform
+package terraform.aws
 
-warn[msg] {
-    policyID := "DOMI-0001"
-    resource := input.resources[name]
-    resource.tags =! null
-    msg = sprintf("%s: No tags found for the following resource(s): `%v`", [policyID, resource ])
+has_field(obj, field) {
+    obj[field]
 }
 
 warn[msg] {
-    policyID := "DOMI-0002"
-    resource := input.resources[name]
-    resource.tags =! []
-    msg = sprintf("%s: Empty tags block found for the following resource(s): `%v`", [policyID, resource ])
+    policyID := "DOMI-AWS-001"
+    resources := input.resource[_]
+    not has_field(resources, "tags")
+    msg = sprintf("%s: No tags found for the following resource(s): `%v`", [ policyID, resources ])
+}
+
+warn[msg] {
+    policyID := "DOMI-AWS-002"
+    resources := input.resource[_]
+    has_field(resources, "tags")
+    some i
+    resources.tags[i] == null
+    msg = sprintf("%s: Empty tags block found for the following resource(s): `%v`", [policyID, resources ])
 }
