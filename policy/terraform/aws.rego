@@ -16,6 +16,6 @@ warn[msg] {
     resources := input.resource[_]
     has_field(resources, "tags")
     some i
-    resources.tags[i] == null
+    not resources.tags[i]
     msg = sprintf("%s: Empty tags block found for the following resource(s): `%v`", [policyID, resources ])
 }
