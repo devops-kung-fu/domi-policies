@@ -13,7 +13,7 @@ warn[msg] {
 
 warn[msg] {
     policyID := "DOMI-AWS-002"
-    resources := input.resource[_]
+    resources := input.resource.aws_s3_bucket[_]
     has_field(resources, "tags")
     some i
     not resources.tags[i]
