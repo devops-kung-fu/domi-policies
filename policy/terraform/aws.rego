@@ -14,7 +14,6 @@ warn[msg] {
 warn[msg] {
     policyID := "DOMI-AWS-002"
     resources := input.resource.aws_s3_bucket[_]
-    has_field(resources, "tags")
-    not resources.tags[_]
+    resources.tags == {} 
     msg = sprintf("%s: Empty tags block found for the following resource(s): `%v`", [policyID, resources ])
 }
