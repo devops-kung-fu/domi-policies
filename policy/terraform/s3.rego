@@ -15,5 +15,26 @@ warn[msg] {
     policyID := "DOMI-AWS-002"
     resources := input.resource.aws_s3_bucket[_]
     resources.tags == {} 
-    msg = sprintf("%s: Empty tags block found for the following resource(s): `%v`", [policyID, resources ])
+    msg = sprintf("%s: Empty tags block found for the following resource(s): `%v`", [ policyID, resources ])
+}
+
+deny[msg] {
+    policyID := "DOMI-AWS-008"
+    versioningEnabled := input.resource.aws_s3_bucket.versioning.enabled
+    not versioningEnabled 
+    msg = sprintf("%s: S3 Versioning is not enabled: `%v`", [ policyID, versioningEnabled ])
+}
+
+deny[msg] {
+    policyID := "DOMI-AWS-009"
+    versioning := input.resource.aws_s3_bucket.versioning
+    not has_field(versioning, "enabled") 
+    msg = sprintf("%s: S3 Versioning enabled field missing: `%v`", [ policyID, versioning ])
+}
+
+deny[msg] {
+    policyID := "DOMI-AWS-010"
+    bucket := input.resource.aws_s3_bucket
+    not has_field(bucket, "versioning") 
+    msg = sprintf("%s: S3 Bucket Versioning block missing: `%v`", [ policyID, bucket ])
 }
