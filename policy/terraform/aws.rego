@@ -13,26 +13,30 @@ deny[msg] {
 
 deny[msg] {
     policyID := "DOMI-AWS-004"
-    not has_field(input.terraform.backend.s3, "encrypt")
-    msg = sprintf("%s: Terraform S3 backend encryption field is missing: `%v`", [ policyID ])
+    resource := input.terraform.backend.s3
+    not has_field(resource, "encrypt")
+    msg = sprintf("%s: Terraform S3 backend encryption field is missing: `%v`", [ policyID, resource ])
 }
 
 deny[msg] {
     policyID := "DOMI-AWS-005"
-    not has_field(input.terraform, "backend")
-    msg = sprintf("%s: Terraform backend configuration is missing: `%v`", [ policyID ])
+    resource := input.terraform
+    not has_field(resource, "backend")
+    msg = sprintf("%s: Terraform backend configuration is missing: `%v`", [ policyID, resource ])
 }
 
 deny[msg] {
     policyID := "DOMI-AWS-006"
-    awsAccessKey := input.provider.aws.access_key
+    resource := input.provider.aws
+    awsAccessKey := resource.access_key
     not re_match("var\\.(.*)", awsAccessKey)
-    msg = sprintf("%s: Possible plain text AWS Access Key found: `%v`", [ policyID, awsAccessKey ])
+    msg = sprintf("%s: Possible plain text AWS Access Key found: `%v`", [ policyID, resource ])
 }
 
 deny[msg] {
     policyID := "DOMI-AWS-007"
-    awsSecretAccessKey := input.provider.aws.secret_key
+    resource := input.provider.aws
+    awsSecretAccessKey := resource.secret_key
     not re_match("var\\.(.*)", awsSecretAccessKey)
-    msg = sprintf("%s: Possible plain text AWS Secret Access Key found: `%v`", [ policyID, awsSecretAccessKey ])
+    msg = sprintf("%s: Possible plain text AWS Secret Access Key found: `%v`", [ policyID, resource ])
 }
