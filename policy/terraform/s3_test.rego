@@ -76,3 +76,18 @@ test_domi_aws_011 {
         }
     } 
 }
+
+test_domi_aws_012 {
+   deny with input as {
+        "resource": {
+            "aws_s3_bucket": {
+                "master_builders": {
+                    "bucket": "master-builders",
+                    "versioning": {
+                        "mfa_delete": false
+                    }
+                }
+            }
+        }
+    } 
+}
