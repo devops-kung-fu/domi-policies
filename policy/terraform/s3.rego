@@ -29,7 +29,7 @@ deny[msg] {
 deny[msg] {
     policyID := "DOMI-AWS-009"
     resource := input.resource.aws_s3_bucket[_]
-    not has_field(resource.versioning, "enabled") 
+    resource.versioning == {} 
     msg = sprintf("%s: S3 Versioning `enabled` field missing: `%v`", [ policyID, resource ])
 }
 
