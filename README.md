@@ -10,7 +10,7 @@
 | DOMI-AWS-006 | Deny | Possible plain text AWS Access Key found. |
 | DOMI-AWS-007 | Deny | Possible plain text AWS Secret Access Key found. |
 | DOMI-AWS-008 | Deny | S3 Versioning is not enabled. |
-| DOMI-AWS-009 | Deny | S3 Versioning enabled field missing. |
+| DOMI-AWS-009 | Deny | S3 Versioning block is empty. |
 | DOMI-AWS-010 | Deny | S3 Versioning block missing. |
 | DOMI-AWS-011 | Deny | S3 Server-side encryption not configured. |
 | DOMI-AWS-012 | Deny | S3 MFA-Delete is not enabled. |

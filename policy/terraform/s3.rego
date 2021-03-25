@@ -22,14 +22,14 @@ deny[msg] {
     policyID := "DOMI-AWS-008"
     resource := input.resource.aws_s3_bucket[_]
     resource.versioning.enabled == false
-    msg = sprintf("%s: S3 Versioning is not enabled: `%v`", [ policyID, resource ])
+    msg = sprintf("%s: S3 Versioning is not `enabled`: `%v`", [ policyID, resource ])
 }
 
 deny[msg] {
     policyID := "DOMI-AWS-009"
     resource := input.resource.aws_s3_bucket[_]
     resource.versioning == {} 
-    msg = sprintf("%s: S3 Versioning `enabled` field missing: `%v`", [ policyID, resource ])
+    msg = sprintf("%s: S3 Versioning block is empty: `%v`", [ policyID, resource ])
 }
 
 deny[msg] {
@@ -44,4 +44,11 @@ deny[msg] {
     resource := input.resource.aws_s3_bucket[_]
     not has_field(resource, "server_side_encryption_configuration") 
     msg = sprintf("%s: S3 Server Side Encryption configuration missing: `%v`", [ policyID, resource ])
+}
+
+deny[msg] {
+    policyID := "DOMI-AWS-012"
+    resource := input.resource.aws_s3_bucket[_]
+    resource.versioning.mfa_delete == false
+    msg = sprintf("%s: S3 Versioning `mfa_delete` is not enabled: `%v`", [ policyID, resource ])
 }
