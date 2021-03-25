@@ -20,9 +20,10 @@ warn[msg] {
 
 deny[msg] {
     policyID := "DOMI-AWS-008"
-    versioningEnabled := input.resource.aws_s3_bucket.versioning.enabled
+    resource := input.resource.aws_s3_bucket
+    versioningEnabled := resource.versioning.enabled
     not versioningEnabled 
-    msg = sprintf("%s: S3 Versioning is not enabled: `%v`", [ policyID, versioningEnabled ])
+    msg = sprintf("%s: S3 Versioning is not enabled: `%v`", [ policyID, resource ])
 }
 
 deny[msg] {
