@@ -38,5 +38,5 @@ deny[msg] {
     resource := input.provider.aws
     awsSecretAccessKey := resource.secret_key
     not re_match("var\\.(.*)", awsSecretAccessKey)
-    msg = sprintf("%s: Possible plain text AWS Secret Access Key found: `%v`", [ policyID ])
+    msg = sprintf("%s: Possible plain text AWS Secret Access Key found.", [ policyID ])
 }
