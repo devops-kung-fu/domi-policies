@@ -39,3 +39,10 @@ deny[msg] {
     not has_field(bucket, "versioning") 
     msg = sprintf("%s: S3 Bucket Versioning block missing: `%v`", [ policyID, bucket ])
 }
+
+deny[msg] {
+    policyID := "DOMI-AWS-011"
+    bucket := input.resource.aws_s3_bucket[_]
+    not has_field(bucket, "server_side_encryption_configuration") 
+    msg = sprintf("%s: S3 Server Side Encryption configuration missing: `%v`", [ policyID, bucket ])
+}
