@@ -15,33 +15,33 @@ warn[msg] {
     policyID := "DOMI-AWS-002"
     resource := input.resource.aws_s3_bucket[_]
     resource.tags == {} 
-    msg = sprintf("%s: Empty tags block found: `%v`", [ policyID, resource[name] ])
+    msg = sprintf("%s: Empty tags block found: `%v`", [ policyID, resource ])
 }
 
 deny[msg] {
     policyID := "DOMI-AWS-008"
-    resource := input.resource.aws_s3_bucket[_]
+    resource :=]
     resource.versioning.enabled == false
-    msg = sprintf("%s: S3 Versioning is not enabled: `%v`", [ policyID, resource.bucket ])
+    msg = sprintf("%s: S3 Versioning is not enabled: `%v`", [ policyID, resource ])
 }
 
 deny[msg] {
     policyID := "DOMI-AWS-009"
     resource := input.resource.aws_s3_bucket[_]
     resource.versioning == {} 
-    msg = sprintf("%s: S3 Versioning `enabled` field missing: `%v`", [ policyID, resource[name] ])
+    msg = sprintf("%s: S3 Versioning `enabled` field missing: `%v`", [ policyID, resource ])
 }
 
 deny[msg] {
     policyID := "DOMI-AWS-010"
     resource := input.resource.aws_s3_bucket[_]
     not has_field(resource, "versioning") 
-    msg = sprintf("%s: S3 Bucket Versioning block missing: `%v`", [ policyID, resource[name] ])
+    msg = sprintf("%s: S3 Bucket Versioning block missing: `%v`", [ policyID, resource ])
 }
 
 deny[msg] {
     policyID := "DOMI-AWS-011"
     resource := input.resource.aws_s3_bucket[_]
     not has_field(resource, "server_side_encryption_configuration") 
-    msg = sprintf("%s: S3 Server Side Encryption configuration missing: `%v`", [ policyID, resource[name] ])
+    msg = sprintf("%s: S3 Server Side Encryption configuration missing: `%v`", [ policyID, resource ])
 }
