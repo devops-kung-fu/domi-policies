@@ -27,16 +27,16 @@ deny[msg] {
 
 deny[msg] {
     policyID := "DOMI-AWS-006"
-    resource := input.provider.aws
+    resource := input.provider[provider]
     awsAccessKey := resource.access_key
     not re_match("var\\.(.*)", awsAccessKey)
-    msg = sprintf("%s: Possible plain text AWS Access Key found.", [ policyID ])
+    msg = sprintf("%s: Possible plain text AWS Access Key found: `%v`", [ policyID, provider ])
 }
 
 deny[msg] {
     policyID := "DOMI-AWS-007"
-    resource := input.provider.aws
+    resource := input.provider[provider]
     awsSecretAccessKey := resource.secret_key
     not re_match("var\\.(.*)", awsSecretAccessKey)
-    msg = sprintf("%s: Possible plain text AWS Secret Access Key found.", [ policyID ])
+    msg = sprintf("%s: Possible plain text AWS Secret Access Key found: `%v`", [ policyID, provider ])
 }
