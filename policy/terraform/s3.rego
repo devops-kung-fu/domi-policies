@@ -8,14 +8,14 @@ warn[msg] {
     policyID := "DOMI-AWS-001"
     resource := input.resource.aws_s3_bucket[_]
     not has_field(resource, "tags")
-    msg = sprintf("%s: No tags found: `%v`", [ policyID, resource.bucket ])
+    msg = sprintf("%s: No tags found: `%v`", [ policyID, resource[name] ])
 }
 
 warn[msg] {
     policyID := "DOMI-AWS-002"
-    resources := input.resource.aws_s3_bucket[_]
-    resources.tags == {} 
-    msg = sprintf("%s: Empty tags block found: `%v`", [ policyID, resource.bucket ])
+    resource := input.resource.aws_s3_bucket[_]
+    resource.tags == {} 
+    msg = sprintf("%s: Empty tags block found: `%v`", [ policyID, resource[name] ])
 }
 
 deny[msg] {
