@@ -22,7 +22,7 @@ deny[msg] {
     policyID := "DOMI-AWS-005"
     resource := input.terraform
     not has_field(resource, "backend")
-    msg = sprintf("%s: Terraform backend configuration is missing: `%v`", [ policyID, resource ])
+    msg = sprintf("%s: Terraform backend configuration is missing.", [ policyID ])
 }
 
 deny[msg] {
