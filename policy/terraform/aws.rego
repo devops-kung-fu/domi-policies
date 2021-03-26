@@ -6,16 +6,16 @@ has_field(obj, field) {
 
 deny[msg] {
     policyID := "DOMI-AWS-003"
-    resource := input.terraform.backend.s3.encrypt
-    not resource
-    msg = sprintf("%s: Terraform S3 backend encryption is set to false: `%v`", [ policyID, resource ])
+    resource := input.terraform[backend]
+    not resource.backend.s3.encrypt
+    msg = sprintf("%s: Terraform S3 backend encryption is set to false: `%v`", [ policyID, backend ])
 }
 
 deny[msg] {
     policyID := "DOMI-AWS-004"
-    resource := input.terraform.backend.s3
-    has_field(resource, "encrypt")
-    msg = sprintf("%s: Terraform S3 backend encryption field is missing: `%v`", [ policyID, resource ])
+    resource := input.terraform[backend]
+    has_field(resource.backend.s3, "encrypt")
+    msg = sprintf("%s: Terraform S3 backend encryption field is missing: `%v`", [ policyID, backend ])
 }
 
 deny[msg] {
