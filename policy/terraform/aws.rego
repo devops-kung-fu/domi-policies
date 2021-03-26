@@ -14,7 +14,7 @@ deny[msg] {
 deny[msg] {
     policyID := "DOMI-AWS-004"
     resource := input.terraform.backend[backend]
-    has_field(resource.s3, "encrypt")
+    resource.s3 == {}
     msg = sprintf("%s: Terraform S3 backend encryption field is missing: `%v`", [ policyID, backend ])
 }
 
