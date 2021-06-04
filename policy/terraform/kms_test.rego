@@ -1,3 +1,5 @@
+package terraform.aws.kms
+
 test_domi_aws_0100 {
     warn with input as {
         "resource": {
