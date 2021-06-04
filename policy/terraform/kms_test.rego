@@ -19,7 +19,7 @@ test_domi_aws_0101 {
                 "empty_tags": {
                     "description": "This kms key has empty tags.",
                     "deletion_window_in_days": 10,
-                    "enable_key_rotation": true
+                    "enable_key_rotation": true,
                     "tags": {}
                 }
             }
