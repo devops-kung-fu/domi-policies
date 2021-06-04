@@ -1,6 +1,6 @@
 package terraform.aws.s3
 
-test_domi_aws_001 {
+test_domi_aws_0000 {
     warn with input as {
         "resource": {
             "aws_s3_bucket": {
@@ -12,7 +12,7 @@ test_domi_aws_001 {
     }
 }
 
-test_domi_aws_002 {
+test_domi_aws_0001 {
     warn with input as {
         "resource": {
             "aws_s3_bucket": {
@@ -25,7 +25,7 @@ test_domi_aws_002 {
     }
 }
 
-test_domi_aws_008 {
+test_domi_aws_0007 {
    deny with input as {
         "resource": {
             "aws_s3_bucket": {
@@ -40,7 +40,7 @@ test_domi_aws_008 {
     } 
 }
 
-test_domi_aws_009 {
+test_domi_aws_0008 {
    deny with input as {
         "resource": {
             "aws_s3_bucket": {
@@ -53,7 +53,7 @@ test_domi_aws_009 {
     } 
 }
 
-test_domi_aws_010 {
+test_domi_aws_0009 {
    deny with input as {
         "resource": {
             "aws_s3_bucket": {
@@ -65,7 +65,7 @@ test_domi_aws_010 {
     } 
 }
 
-test_domi_aws_011 {
+test_domi_aws_0010 {
    deny with input as {
         "resource": {
             "aws_s3_bucket": {
@@ -77,7 +77,7 @@ test_domi_aws_011 {
     } 
 }
 
-test_domi_aws_012 {
+test_domi_aws_0011 {
    deny with input as {
         "resource": {
             "aws_s3_bucket": {
