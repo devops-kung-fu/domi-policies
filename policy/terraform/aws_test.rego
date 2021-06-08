@@ -1,6 +1,6 @@
 package terraform.aws
 
-test_domi_aws_003 {
+test_domi_aws_0002 {
     deny with input as {
         "terraform": {
             "backend": {
@@ -12,7 +12,7 @@ test_domi_aws_003 {
     }
 }
 
-test_domi_aws_004 {
+test_domi_aws_0003 {
     deny with input as {
         "terraform": {
             "backend": {
@@ -22,13 +22,13 @@ test_domi_aws_004 {
     }
 }
 
-test_domi_aws_005 {
+test_domi_aws_0004 {
     deny with input as {
         "terraform": {}
     }
 }
 
-test_domi_aws_006 {
+test_domi_aws_0005 {
     deny with input as {
         "provider": {
             "aws": {
@@ -38,7 +38,7 @@ test_domi_aws_006 {
     }
 }
 
-test_domi_aws_007 {
+test_domi_aws_0006 {
     deny with input as {
         "provider": {
             "aws": {
