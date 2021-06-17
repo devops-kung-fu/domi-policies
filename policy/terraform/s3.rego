@@ -18,6 +18,13 @@ warn[msg] {
     msg = sprintf("%s: Empty tags block found: `%v`", [ policyID, bucket ])
 }
 
+warn[msg] {
+    policyID := "DOMI-AWS-0002"
+    resource := input.resource.aws_s3_bucket[bucket]
+    not has_field(resource, "logging") 
+    msg = sprintf("%s: Access Logging is not configured: `%v`", [ policyID, bucket ])
+}
+
 deny[msg] {
     policyID := "DOMI-AWS-0007"
     resource := input.resource.aws_s3_bucket[bucket]
