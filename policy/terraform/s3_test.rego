@@ -4,8 +4,19 @@ test_domi_aws_0000 {
     warn with input as {
         "resource": {
             "aws_s3_bucket": {
-                "patbot_logs": {
-                    "bucket": "patbot-logs"
+                "no_tags": {
+                    "bucket": "no-tags",
+                    "versioning": {
+                        "enabled": true
+                    },
+                    "server_side_encryption_configuration": {
+                        "rule": {
+                            "apply_server_side_encryption_by_default": {
+                                "kms_master_key_id": "deadbeef-dead-beef-dead-beefdeadbeef",
+                                "sse_algorithm": "aws:kms"
+                            }
+                        }
+                    }
                 }
             }
         }

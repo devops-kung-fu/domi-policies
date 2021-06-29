@@ -5,27 +5,27 @@ has_field(obj, field) {
 }
 
 deny[msg] {
-    policyID := "DOMI-AWS-0002"
+    policyID := "DOMI-AWS-0200"
     resource := input.terraform.backend.s3.encrypt
     msg = sprintf("%s: Terraform S3 backend encryption is set to false.", [ policyID ])
 }
 
 deny[msg] {
-    policyID := "DOMI-AWS-0003"
+    policyID := "DOMI-AWS-0201"
     resource := input.terraform.backend.s3
     resource == {}
     msg = sprintf("%s: Terraform S3 backend encryption field is missing.", [ policyID ])
 }
 
 deny[msg] {
-    policyID := "DOMI-AWS-0004"
+    policyID := "DOMI-AWS-0202"
     resource := input.terraform
     not has_field(resource, "backend")
     msg = sprintf("%s: Terraform backend configuration is missing.", [ policyID ])
 }
 
 deny[msg] {
-    policyID := "DOMI-AWS-0005"
+    policyID := "DOMI-AWS-0203"
     resource := input.provider[provider]
     awsAccessKey := resource.access_key
     not re_match("var\\.(.*)", awsAccessKey)
@@ -33,7 +33,7 @@ deny[msg] {
 }
 
 deny[msg] {
-    policyID := "DOMI-AWS-0006"
+    policyID := "DOMI-AWS-0204"
     resource := input.provider[provider]
     awsSecretAccessKey := resource.secret_key
     not re_match("var\\.(.*)", awsSecretAccessKey)
